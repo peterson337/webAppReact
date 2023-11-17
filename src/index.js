@@ -1,13 +1,55 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+// ? publicRouter
 import App from './App';
+import Home from './pages/Home';
+import Login from './pages/Login';
+// ! protectedRoute
+import Users from './pages/Users';
+import UserDetails from './pages/UserDetails';
+import NewUser from './pages/NewUser';
+import Logout from './pages/Logout';
+
+import ErrorPage from './pages/ErrorPage';
 import reportWebVitals from './reportWebVitals';
+import { createBrowserRouter,   RouterProvider,} from 'react-router-dom';
+
+const publicRouter = createBrowserRouter([{
+  path: '/',
+  element: <App />,
+  children: [
+    {path: '/', element: <Home />},
+    {path: '/home', element: <Home />},
+    {path: '/login', element: <Login />},
+    {path: '/*', element: <ErrorPage />}
+  ]
+}])
+
+const protectedRoute = createBrowserRouter([{
+  path: '/',
+  element: <App />,
+  children: [
+    {path: '/', element: <Users />},
+    {path: '/users', element: <Users />},
+    {path: '/users/:id', element: <UserDetails />},
+    {path: '/newuser', element: <NewUser />},
+    {path: '/logout', element: <Logout />},
+    {path: '/*', element: <ErrorPage />}
+  ]
+}
+  
+])
+
+const route = localStorage.getItem('@1app/displayname') === null ? publicRouter : protectedRoute;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <RouterProvider router={route}>
     <App />
+
+    </RouterProvider>
   </React.StrictMode>
 );
 
