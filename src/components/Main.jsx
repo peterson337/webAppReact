@@ -3,8 +3,7 @@ import { Outlet } from 'react-router-dom';
  
 const Main = () => {
   return (
-    <div
-    style={{border: '1px solid black'}}>
+    <div>
       <Outlet ></Outlet> 
     </div>
   )

@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { NavLink  } from "react-router-dom";
 
 const Header = () => {
+
   return (
 
 
@@ -27,7 +28,7 @@ const Header = () => {
 
         <NavLink  to={`/login`}>
         <button className='btn btn-light'>
-        Login
+        Criar conta
         </button>
         </NavLink >
             </div>
@@ -35,6 +36,27 @@ const Header = () => {
 
           :
           <>
+
+<NavLink  to={`/`} className=' '>
+      <h1 className='text-light  link-underline-Light-hover fs-4 border p-1 fw-bolder'>
+        {`</1App>`}
+      </h1>
+        </NavLink >
+
+
+            <div className='d-flex flex-row gap-3'>
+        <NavLink to={`/`} >
+           <button className='btn btn-dark'>
+            Users
+           </button>
+        </NavLink>
+
+        <NavLink  to={`/login`}>
+        <button className='btn btn-light'>
+        Logout
+        </button>
+        </NavLink >
+            </div>
 
           </>
 
