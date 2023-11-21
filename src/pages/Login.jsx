@@ -64,24 +64,26 @@ const Login = () => {
       >
 
         <h2 className='border-bottom pb-2 border-white'>{`</>Criar conta`}</h2>
-        <label>Login</label>
+        <label for="text">Login</label>
 
         <input type="text" className='form-control ' 
         value={state.username}
         onChange={(e) => dispatch({type: 'User', field: 'username', value: e.target.value})} 
+        required
         />
 
-        <label>email</label>
+        <label for="email">email</label>
         <input type="email" className='form-control '
          value={state.email} 
         onChange={(e) => dispatch({type: 'User', field: 'email', value: e.target.value})} 
+        required
          />
 
         <label>Senha</label>
         <input type="password" className='form-control ' 
         value={state.password}
         onChange={(e) => dispatch({type: 'User', field: 'password', value: e.target.value})} 
-
+        required
          />
 
         <div className='d-flex flex-row justify-content-end gap-3 border-top pt-3 border-white'>
@@ -92,6 +94,7 @@ const Login = () => {
         </div>
 
       </section>
+
 
     </main>
   )

@@ -51,7 +51,7 @@ const Header = () => {
            </button>
         </NavLink>
 
-        <NavLink  to={`/login`}>
+        <NavLink  to={`/logout`}>
         <button className='btn btn-light'>
         Logout
         </button>
