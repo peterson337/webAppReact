@@ -31,6 +31,12 @@ const Header = () => {
         Criar conta
         </button>
         </NavLink >
+        
+        <NavLink  to={`/logar`}>
+        <button className='btn btn-light'>
+        Login
+        </button>
+        </NavLink >
             </div>
           </>
 

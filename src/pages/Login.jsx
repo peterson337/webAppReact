@@ -32,7 +32,7 @@ const Login = () => {
    try{
      
       axios.post(
-      'http://localhost:5000/login',
+      'http://localhost:5000/createLogin',
       JSON.stringify(state),
       
       {
@@ -41,9 +41,11 @@ const Login = () => {
         }
       }
       
-      )
+      ).then((res) => {
+        const displayname = res.data;
+        localStorage.setItem('@1app/displayname', JSON.stringify(displayname));
+      })
       
-      localStorage.setItem('@1app/displayname', state.username);
 
       navigate('/');
 
@@ -92,6 +94,10 @@ const Login = () => {
         <button className='btn btn-danger'>Cancelar</button>
 
         </div>
+
+          <p>
+          Caso tenha uma conta <NavLink to={`/logar`}> clique aqui </NavLink> para logar
+          </p>
 
       </section>
 

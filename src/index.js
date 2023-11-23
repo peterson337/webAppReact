@@ -5,6 +5,7 @@ import './index.css';
 import App from './App';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Logar from './pages/Logar';
 // ! protectedRoute
 import Users from './pages/Users';
 import UserDetails from './pages/UserDetails';
@@ -22,6 +23,7 @@ const publicRouter = createBrowserRouter([{
     {path: '/', element: <Home />},
     {path: '/home', element: <Home />},
     {path: '/login', element: <Login />},
+    {path: '/logar', element: <Logar />},
     {path: '/*', element: <ErrorPage />}
   ]
 }])

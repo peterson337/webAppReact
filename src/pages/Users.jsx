@@ -5,12 +5,22 @@ import { FaPlus } from "react-icons/fa";
 import { NavLink  } from "react-router-dom";
 
 
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+
 const Users = () => {
     const [users, setUsers] = useState([]);
+    const [loading, setloading] = useState(false);
 
     useEffect(() => {
        axios.get('http://localhost:5000/users').then((res) => {
         setUsers(res.data.post);
+        setloading(res.data.loading);
+        try{
+          setloading(false);
+        }catch{
+          
+        }
        })
 
         
@@ -21,12 +31,22 @@ const Users = () => {
     <main className='d-flex flex-column'>
 
     <section className='d-flex flex-wrap flex-row m-3 gap-3'>
-      {users.length === 0 ?
+      {
+
+      loading?
+      <div className="d-flex align-items-center justify-content-between">
+      <strong role="status">Loading...</strong>
+      <div className="spinner-border ms-auto" aria-hidden="true"/>
+    </div>
+      :
+      
+      users.length === 0 ?
         <p>Nenhum usuário encontrado</p>
         :
+
         users.map((user) => {
           return (
-            <Card user={user} key={user.id} />
+            <Card user={user} key={user._id} />
           )
         })
       }
@@ -35,11 +55,16 @@ const Users = () => {
     <section className='d-flex justify-content-end align-items-end fixed-bottom p-3'>
       <NavLink
       to={'/newuser'}
-        className='btn btn-circle btn-primary '
-        style={{ borderRadius: '50%', padding: '15px', marginBottom: '50px' }}
+        style={{marginBottom: '50px' }}
       >
-        <FaPlus />
-      </NavLink>
+  <Box sx={{ '& > :not(style)': { m: 1 } }}>
+      <Fab color="primary" aria-label="add">
+      <FaPlus />
+
+      </Fab>
+     
+    </Box>     
+   </NavLink>
     </section>
 
   </main>

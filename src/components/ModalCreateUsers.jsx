@@ -84,7 +84,7 @@ const ModalCreateUsers = (props) => {
             <input type="password" placeholder='Senha' value={state.password} className='form-control'
             onChange={(e) => dispatch({type: 'User', field: 'password', value: e.target.value})}
             />
-
+   
         </DialogContent>
         <DialogActions>
 
