@@ -25,9 +25,17 @@ const ModalCreateUsers = (props) => {
     }
     
     const [state, dispatch] = useReducer(reducer ,initialState);
-
+   
     const createUser = (e) => {
         e.preventDefault();
+
+        if(state.username === '' || state.password === '' || state.email === '' || state.cargo === ''){
+          alert('Preencha todos os campos para criar um usuário');
+          return;
+        }
+
+
+        
         axios.post(
             'http://localhost:5000/createUser',
             JSON.stringify(state),

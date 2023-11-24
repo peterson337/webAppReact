@@ -23,12 +23,31 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  function isPasswordValid(password) {
+    // Pelo menos 8 caracteres
+    // Pelo menos uma letra maiúscula
+    // Pelo menos uma letra minúscula
+    // Pelo menos um número
+    const passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+    return passwordRegex.test(password);
+}
   
   
   const handleLogin =  (e) => {
     e.preventDefault(); 
-   
 
+    if(state.username === '' || state.password === '' || state.email === ''){
+      alert('Preencha todos os campos para criar uma conta.');
+      return;
+    }
+
+    if(!isPasswordValid(state.password)) {
+      alert(
+        'A senha deve ter pelo menos 8 caracteres, uma letra maiúscula, uma letra minúscula e um número.'
+    );
+    return;
+    }
+   
    try{
      
       axios.post(
@@ -45,6 +64,8 @@ const Login = () => {
         const displayname = res.data;
         localStorage.setItem('@1app/displayname', JSON.stringify(displayname));
       })
+
+  
       
 
       navigate('/');
@@ -71,21 +92,24 @@ const Login = () => {
         <input type="text" className='form-control ' 
         value={state.username}
         onChange={(e) => dispatch({type: 'User', field: 'username', value: e.target.value})} 
-        required
+        placeholder='Login'
+
         />
 
         <label for="email">email</label>
         <input type="email" className='form-control '
          value={state.email} 
         onChange={(e) => dispatch({type: 'User', field: 'email', value: e.target.value})} 
-        required
+        placeholder='Email'
+
          />
 
         <label>Senha</label>
         <input type="password" className='form-control ' 
         value={state.password}
         onChange={(e) => dispatch({type: 'User', field: 'password', value: e.target.value})} 
-        required
+        placeholder='Senha'
+
          />
 
         <div className='d-flex flex-row justify-content-end gap-3 border-top pt-3 border-white'>

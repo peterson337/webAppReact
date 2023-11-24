@@ -10,7 +10,7 @@ import Fab from '@mui/material/Fab';
 
 const Users = () => {
     const [users, setUsers] = useState([]);
-    const [loading, setloading] = useState(false);
+    const [loading, setloading] = useState(true);
 
     useEffect(() => {
        axios.get('http://localhost:5000/users').then((res) => {
@@ -34,9 +34,12 @@ const Users = () => {
       {
 
       loading?
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex  justify-content-center  w-100">
+        <span className="d-flex align-items-center gap-3">
+
       <strong role="status">Loading...</strong>
       <div className="spinner-border ms-auto" aria-hidden="true"/>
+        </span>
     </div>
       :
       
